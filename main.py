@@ -1,4 +1,5 @@
 import pygame
+
 import sys
 sys.path.append('https://replit.com/@NotStudioGaming/FrogGame-2#Frog.py')
 
