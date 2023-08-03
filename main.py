@@ -1,5 +1,12 @@
+import pygame
+import sys
+sys.path.append('https://replit.com/@NotStudioGaming/FrogGame-2#Frog.py')
+
 from frog import Frog
-import pygame, sys
+from log import Log
+from bus import Bus
+
+
 
 pygame.init()
 pygame.event.set_allowed([pygame.KEYDOWN, pygame.QUIT])
@@ -19,29 +26,32 @@ GRAY = (175, 175, 175)
 BLUE = (0, 0, 175)
 
 frog = Frog()
+bus = Bus(Bus.STARTING_POSITION, 'Left')
+log = Log(Log.STARTING_POSITION, 'Right')
 
 while True:
 
-  CLOCK.tick(FPS)
-  SCREEN.fill(BLACK)
+    CLOCK.tick(FPS)
+    SCREEN.fill(BLACK)
 
-  SCREEN.blit(frog.image, frog.rect)
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            sys.exit()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_w:  # W
+                frog.move_up()
+            if event.key == pygame.K_a:  # A
+                frog.move_left()
+            if event.key == pygame.K_s:  # S
+                frog.move_down()
+            if event.key == pygame.K_d:  # D
+                frog.move_right()
 
-  pygame.display.flip()
+    bus.move()
+    log.move()
 
-  for event in pygame.event.get():
-    if event.type == pygame.QUIT:
-      sys.exit()
-    if event.type == pygame.KEYDOWN:
-      if event.key == pygame.K_w:  # W
-        frog.move_up()
-      if event.key == pygame.K_a:  # A
-        frog.move_left()
-      if event.key == pygame.K_s:  # S
-        frog.move_down()
-      if event.key == pygame.K_d:  # D
-        frog.move_right()
+    SCREEN.blit(frog.image, frog.rect)
+    SCREEN.blit(bus.image, bus.rect)
+    SCREEN.blit(log.image, log.rect)
 
-pygame.quit()
-
-pygame.quit()
+    pygame.display.flip()
