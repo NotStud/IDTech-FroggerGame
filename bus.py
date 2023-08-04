@@ -24,12 +24,10 @@ class Bus(pygame.sprite.Sprite):
         # Bus is going left
         if self.direction == 'Left':
             self.rect.centerx -= Bus.MOVE_DIST
-            # Bus has moved off the screen
             if self.rect.right <= 0:
                 self.rect.centerx = Bus.SCREEN_DIM[0] + Bus.SIZE[0] / 2
         # Bus is going right
         else:
             self.rect.centerx += Bus.MOVE_DIST
-            # Bus has moved off the screen
             if self.rect.left >= Bus.SCREEN_DIM[0]:
                 self.rect.centerx = -Bus.SIZE[0] / 2
