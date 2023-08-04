@@ -21,7 +21,7 @@ class Bus(pygame.sprite.Sprite):
         self.direction = direction
 
     def move(self):
-         # Bus is going left
+        # Bus is going left
         if self.direction == 'Left':
             self.rect.centerx -= Bus.MOVE_DIST
             # Bus has moved off the screen
